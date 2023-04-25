@@ -6,7 +6,22 @@ const cors = require('cors');
 // require dotenv
 // add dotenv for password
 
+// middleware
+app.use(cors());
+app.use(express.json()) // req.body
+
 // Routes
+
+app.post('/todos', async (req, res) => {
+  try {
+    console.log(req.body)
+  } catch (err) {
+    console.error(err.message)
+  }
+})
+
+
+// create a todo
 
 // create a todo
 
@@ -16,14 +31,10 @@ const cors = require('cors');
 
 // delete a todo
 
-
-
-// middleware
-app.use(cors());
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.json({hello: "dggf"})
+app.get('/:ouid/:quizid', (req, res) => {
+  const {word, quizid} = req.params;
+  res.json({ouid: quizid})
+  // app.redirect('')
 })
 
 app.listen(5001, () => {
