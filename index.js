@@ -47,8 +47,8 @@ app.get('/todos/:id', async(req, res) => {
     ])
     
     res.json(todo.rows[0])
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err)
   }
 })
 
@@ -63,12 +63,25 @@ app.put('/todos/:id', async (req, res) => {
     );
     
     res.json('Todo was updated!');
-  } catch (error) {
-    console.error(error)
+  } catch (err) {
+    console.error(err)
   }
 })
 
 // delete a todo
+app.delete('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteTodo = await pool.query(
+      "DELETE FROM todo WHERE todo_id = $1", [
+        id
+      ]);
+      res.json('Todo was deleted!')
+  } catch (err) {
+    console.error(err)
+  }
+})
+
 
 app.get('/:ouid/:quizid', (req, res) => {
   const {word, quizid} = req.params;
