@@ -36,8 +36,8 @@ const ListTodos = () => {
 
   return (
     <>
-      <h1>List Todos</h1>;
-      <table className="table mt-5 text-center">
+      <h1 className="text-center mt-3">List Todos</h1>
+      <table className="table mt-3 text-center">
         <thead>
           <tr>
             <th>Description</th>
@@ -56,7 +56,7 @@ const ListTodos = () => {
           {todos.map(todo => (
             <tr key={todo.todo_id}>
               <td>{todo.description}</td>
-              <td><EditTodo /></td>
+              <td><EditTodo todo={todo}/></td>
               <td>
                 <button className="btn btn-danger"
                 onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
