@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from "react";
+import EditTodo from "./EditTodo";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
@@ -24,7 +25,7 @@ const ListTodos = () => {
 
       setTodos(jsonData);
     } catch (err) {
-      console.error(err)
+      console.error(err.message)
     }
   }
 
@@ -55,7 +56,7 @@ const ListTodos = () => {
           {todos.map(todo => (
             <tr key={todo.todo_id}>
               <td>{todo.description}</td>
-              <td>Edit</td>
+              <td><EditTodo /></td>
               <td>
                 <button className="btn btn-danger"
                 onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
